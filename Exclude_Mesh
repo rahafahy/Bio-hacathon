@@ -1,0 +1,27 @@
+import json
+import re
+file = open("/Users/rahafahmed/Downloads/Code/data_dict.json", 'r')
+#load the file
+json_data = json.load(file)
+#define 
+searchFor='MeSH.[0-9]*'
+mesh_dict= {"":""}
+mesh_set=("")
+mesh_list=[""]
+#function
+def search(values, searchFor):
+    for k in values:
+        for v in values[k]:
+            m =re.findall(searchFor, values[k][v]) #m will be a list with all the mesh terms
+            mesh_set=set(m)#convert to set to remove the deplicate 
+            mesh_list=list(mesh_set)
+            mesh_dict [k] = mesh_list
+            #print(mesh_dict)
+        #download the file to local machine
+    with open("mesh_dict_after_match_PMID.json", "w") as outfile:
+        json.dump(mesh_dict, outfile)
+
+mesh_result=search(json_data, searchFor) #prints Mesh Value
+
+  
+   
