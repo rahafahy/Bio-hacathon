@@ -1,0 +1,28 @@
+
+# Import json Python module
+# the type is list
+import json
+
+file = open("/Users/Asmaa/Documents/Bio-Bottcamp/Code/bioArray.json", 'r')
+json_data = json.load(file)
+data_dict ={}
+print(type(json_data))
+
+# convert to Dict
+for i in range(len(json_data)):
+  data_dict[json_data[i]["PMID"]]=json_data[i]
+print ('Type',type(data_dict))
+# Iterate through the dictionary
+# And print the key: value pairs
+with open("data_dict.json", "w") as outfile:
+    json.dump(data_dict, outfile)
+	
+for key, value in data_dict.items():
+    print(f"\nKey: {key}")
+    print(f"Value: {value}\n")
+
+# Close the opened sample JSON file
+# Using close() function
+file.close()	
+	
+
